@@ -2,6 +2,8 @@ let canvas = document.getElementById("gameCanvas");
 
 let ctx = canvas.getContext("2d");
 
+let scoreNumber = document.querySelector(".score-number");
+
 let boxSize = 20;
 
 let snake = [
@@ -9,6 +11,13 @@ let snake = [
 ];
 
 let direction = "RIGHT";
+
+let score = 0;
+
+let food = {
+    x: randomFoodPosition(),
+    y: randomFoodPosition()
+};
 
 let gameLoop;
 
@@ -28,6 +37,8 @@ function startGame() {
 function drawGame() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    drawFood();
 
     drawSnake();
 
@@ -51,6 +62,22 @@ function drawSnake() {
             boxSize
         );
     }
+}
+
+function drawFood() {
+
+    ctx.fillStyle = "#fb7185";
+
+    ctx.shadowBlur = 15;
+
+    ctx.shadowColor = "#fb7185";
+
+    ctx.fillRect(
+        food.x * boxSize,
+        food.y * boxSize,
+        boxSize,
+        boxSize
+    );
 }
 
 function moveSnake() {
@@ -82,7 +109,31 @@ function moveSnake() {
 
     snake.unshift(newHead);
 
-    snake.pop();
+    if (
+        snakeHeadX === food.x &&
+        snakeHeadY === food.y
+    ) {
+
+        score++;
+
+        scoreNumber.innerText = score;
+
+        food = {
+            x: randomFoodPosition(),
+            y: randomFoodPosition()
+        };
+    }
+
+    else {
+
+        snake.pop();
+
+    }
+}
+
+function randomFoodPosition() {
+
+    return Math.floor(Math.random() * 18);
 }
 
 function changeDirection(event) {
