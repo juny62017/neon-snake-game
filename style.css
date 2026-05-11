@@ -7,36 +7,61 @@
 
 body {
     min-height: 100vh;
-    background: #020617;
+
+    background:
+        linear-gradient(
+            to bottom right,
+            #020617,
+            #0f172a
+        );
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     padding: 20px;
 }
 
 .main-box {
     width: 100%;
-    max-width: 470px;
-    background: #111827;
-    border-radius: 24px;
-    padding: 30px;
+    max-width: 480px;
+
+    background:
+        rgba(17, 24, 39, 0.96);
+
+    border-radius: 28px;
+
+    padding: 32px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.05);
+
+    box-shadow:
+        0 0 30px rgba(34, 211, 238, 0.08),
+        0 0 60px rgba(59, 130, 246, 0.05);
 }
 
 .top-section {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 28px;
 }
 
 h1 {
     color: white;
-    font-size: 42px;
-    margin-bottom: 10px;
+
+    font-size: 44px;
+
+    margin-bottom: 12px;
+
+    letter-spacing: -1px;
 }
 
 .game-info {
     color: #94a3b8;
+
     font-size: 15px;
-    line-height: 24px;
+
+    line-height: 25px;
 }
 
 .score-area {
@@ -45,20 +70,33 @@ h1 {
 
 .score-card {
     background: #1e293b;
-    padding: 18px;
-    border-radius: 18px;
+
+    padding: 20px;
+
+    border-radius: 20px;
+
     text-align: center;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.04);
 }
 
 .score-label {
     color: #94a3b8;
+
     font-size: 14px;
-    margin-bottom: 8px;
+
+    margin-bottom: 10px;
 }
 
 .score-number {
     color: #22d3ee;
-    font-size: 34px;
+
+    font-size: 38px;
+
+    text-shadow:
+        0 0 10px rgba(34, 211, 238, 0.8),
+        0 0 20px rgba(34, 211, 238, 0.4);
 }
 
 .game-area {
@@ -68,37 +106,71 @@ h1 {
 
 #gameCanvas {
     background: #0f172a;
-    border-radius: 18px;
+
+    border-radius: 20px;
+
+    border:
+        2px solid rgba(34, 211, 238, 0.15);
+
+    box-shadow:
+        0 0 25px rgba(34, 211, 238, 0.08);
+
+    transition: 0.2s;
+}
+
+#gameCanvas:hover {
+
+    box-shadow:
+        0 0 35px rgba(34, 211, 238, 0.12);
+
 }
 
 .bottom-section {
-    margin-top: 24px;
+    margin-top: 28px;
 }
 
 .restart-btn {
     width: 100%;
+
     padding: 15px;
+
     border: none;
+
     border-radius: 14px;
-    background: #22d3ee;
+
+    background:
+        linear-gradient(
+            to right,
+            #22d3ee,
+            #3b82f6
+        );
+
     color: #020617;
+
     font-size: 15px;
+
     font-weight: bold;
+
     cursor: pointer;
+
+    transition: 0.2s;
 }
 
 .restart-btn:hover {
-    opacity: 0.9;
+
+    transform: translateY(-2px);
+
+    opacity: 0.95;
 }
 
 @media (max-width: 500px) {
 
     .main-box {
-        padding: 22px;
+        padding: 24px;
     }
 
     h1 {
-        font-size: 34px;
+        font-size: 36px;
     }
 
     #gameCanvas {
