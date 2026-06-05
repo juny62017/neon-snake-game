@@ -5,6 +5,10 @@ let scoreNumber = document.querySelector(".score-number");
 let startBtn = document.querySelector(".start-btn");
 let restartBtn = document.querySelector(".restart-btn");
 
+let gameOverScreen = document.getElementById("gameOver");
+let finalScore = document.getElementById("finalScore");
+let playAgainBtn = document.getElementById("playAgainBtn");
+
 let boxSize = 20;
 let snake;
 let direction;
@@ -18,24 +22,27 @@ document.addEventListener("keydown", changeDirection);
 resetGame();
 
 startBtn.onclick = function () {
-    if (gameRunning === true) {
-        return;
-    }
+    if (gameRunning) return;
 
     gameRunning = true;
+
     gameLoop = setInterval(drawGame, 120);
 };
 
 restartBtn.onclick = function () {
     clearInterval(gameLoop);
     resetGame();
+    gameOverScreen.style.display = "none";
+};
+
+playAgainBtn.onclick = function () {
+    gameOverScreen.style.display = "none";
+    resetGame();
 };
 
 function resetGame() {
-    snake = [
-        { x: 8, y: 8 }
-    ];
 
+    snake = [{ x: 8, y: 8 }];
     direction = "RIGHT";
     score = 0;
     gameRunning = false;
@@ -49,15 +56,13 @@ function resetGame() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = "white";
+    ctx.fillStyle = "black";
     ctx.font = "28px Arial";
     ctx.fillText("Press Start", 95, 180);
 }
 
 function drawGame() {
-    if (gameRunning === false) {
-        return;
-    }
+    if (!gameRunning) return;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -69,10 +74,7 @@ function drawGame() {
 
 function drawSnake() {
     for (let i = 0; i < snake.length; i++) {
-        ctx.fillStyle = "#22d3ee";
-        ctx.shadowBlur = 15;
-        ctx.shadowColor = "#22d3ee";
-
+        ctx.fillStyle = "green";
         ctx.fillRect(
             snake[i].x * boxSize,
             snake[i].y * boxSize,
@@ -80,47 +82,32 @@ function drawSnake() {
             boxSize
         );
     }
-
-    ctx.shadowBlur = 0;
 }
 
 function drawFood() {
-    ctx.fillStyle = "#fb7185";
-    ctx.shadowBlur = 15;
-    ctx.shadowColor = "#fb7185";
-
+    ctx.fillStyle = "red";
     ctx.fillRect(
         food.x * boxSize,
         food.y * boxSize,
         boxSize,
         boxSize
     );
-
-    ctx.shadowBlur = 0;
 }
 
 function moveSnake() {
-    let snakeHeadX = snake[0].x;
-    let snakeHeadY = snake[0].y;
 
-    if (direction === "RIGHT") {
-        snakeHeadX++;
-    } else if (direction === "LEFT") {
-        snakeHeadX--;
-    } else if (direction === "UP") {
-        snakeHeadY--;
-    } else if (direction === "DOWN") {
-        snakeHeadY++;
-    }
+    let headX = snake[0].x;
+    let headY = snake[0].y;
 
-    let newHead = {
-        x: snakeHeadX,
-        y: snakeHeadY
-    };
+    if (direction === "RIGHT") headX++;
+    else if (direction === "LEFT") headX--;
+    else if (direction === "UP") headY--;
+    else if (direction === "DOWN") headY++;
 
+    let newHead = { x: headX, y: headY };
     snake.unshift(newHead);
 
-    if (snakeHeadX === food.x && snakeHeadY === food.y) {
+    if (headX === food.x && headY === food.y) {
         score++;
         scoreNumber.innerText = score;
 
@@ -134,34 +121,32 @@ function moveSnake() {
 }
 
 function checkCollision() {
-    let snakeHead = snake[0];
+
+    let head = snake[0];
 
     if (
-        snakeHead.x < 0 ||
-        snakeHead.y < 0 ||
-        snakeHead.x >= 18 ||
-        snakeHead.y >= 18
+        head.x < 0 ||
+        head.y < 0 ||
+        head.x >= 18 ||
+        head.y >= 18
     ) {
         endGame();
     }
 
     for (let i = 1; i < snake.length; i++) {
-        if (
-            snakeHead.x === snake[i].x &&
-            snakeHead.y === snake[i].y
-        ) {
+        if (head.x === snake[i].x && head.y === snake[i].y) {
             endGame();
         }
     }
 }
 
 function endGame() {
+
     gameRunning = false;
     clearInterval(gameLoop);
 
-    ctx.fillStyle = "white";
-    ctx.font = "32px Arial";
-    ctx.fillText("Game Over", 90, 180);
+    finalScore.innerText = score;
+    gameOverScreen.style.display = "flex";
 }
 
 function randomFoodPosition() {
@@ -169,13 +154,17 @@ function randomFoodPosition() {
 }
 
 function changeDirection(event) {
+
     if (event.key === "ArrowRight" && direction !== "LEFT") {
         direction = "RIGHT";
-    } else if (event.key === "ArrowLeft" && direction !== "RIGHT") {
+    }
+    else if (event.key === "ArrowLeft" && direction !== "RIGHT") {
         direction = "LEFT";
-    } else if (event.key === "ArrowUp" && direction !== "DOWN") {
+    }
+    else if (event.key === "ArrowUp" && direction !== "DOWN") {
         direction = "UP";
-    } else if (event.key === "ArrowDown" && direction !== "UP") {
+    }
+    else if (event.key === "ArrowDown" && direction !== "UP") {
         direction = "DOWN";
     }
 }
