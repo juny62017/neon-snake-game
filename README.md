@@ -28,6 +28,7 @@ and increase the score while avoiding wall and self collisions....
 
 ## Screenshots and Demo Link
 
+<img width="776" height="788" alt="image" src="https://github.com/user-attachments/assets/abc7a1d3-34a5-43ff-b031-2b927851855a" />
 
 ## WHAT I USED
 
