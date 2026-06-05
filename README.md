@@ -1,17 +1,16 @@
 # NeonSnake
 
-A modern and besttt neon style snake game built by me with  smooth controls... score tracking, and COOOL gameplay.
+A modern and besttt  snake game built by me with  smooth controls... score tracking, and COOOL gameplay.
 
 ## Description
 
-NeonSnake is a website of snake game where the youw will control a small cute glowing snake to collect food( box shape) 
+NeonSnake is a website of snake game where the youw will control a small cute snake to collect food( box shape) 
 and increase the score while avoiding wall and self collisions.... 
 
 ## Features
 
 - Smooth movement
 - Run by keyboard
-- Neon glowing
 - Food system
 - Live score 
 - Collision detection
@@ -29,7 +28,6 @@ and increase the score while avoiding wall and self collisions....
 
 ## Screenshots and Demo Link
 
-<img width="793" height="819" alt="image" src="https://github.com/user-attachments/assets/b2d7049b-d762-4d67-ba30-023e35c79d9c" />
 
 ## WHAT I USED
 
