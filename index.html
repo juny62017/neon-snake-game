@@ -3,36 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeonSnake</title>
+    <title>Snake Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="main-box">
+<div class="main-box">
 
-        <div class="top-section">
-            <h1>NeonSnake</h1>
-            <p class="game-info">A modern neon style snake game made by me</p>
-        </div>
-
-        <div class="score-area">
-            <div class="score-card">
-                <p class="score-label">Current Score</p>
-                <h2 class="score-number">0</h2>
-            </div>
-        </div>
-
-        <div class="game-area">
-            <canvas id="gameCanvas" width="360" height="360"></canvas>
-        </div>
-
-        <div class="button-area">
-            <button class="start-btn">Start Game</button>
-            <button class="restart-btn">Restart Game</button>
-        </div>
-
+    <div class="top-section">
+        <h1>Snake Game</h1>
+        <p class="game-info">Use arrow keys to play.</p>
     </div>
 
-    <script src="script.js"></script>
+    <div class="score-area">
+        <div class="score-card">
+            <p class="score-label">Score</p>
+            <h2 class="score-number">0</h2>
+        </div>
+    </div>
+
+    <div class="game-area">
+        <canvas id="gameCanvas" width="360" height="360"></canvas>
+    </div>
+
+    <div class="button-area">
+        <button class="start-btn">Start</button>
+        <button class="restart-btn">Restart</button>
+    </div>
+
+</div>
+
+
+<div class="game-over" id="gameOver">
+    <div class="game-over-box">
+        <h2>Game Over </h2>
+        <p>Your Score: <span id="finalScore">0</span></p>
+        <button id="playAgainBtn">Play Again</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
